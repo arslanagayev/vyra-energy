@@ -1,0 +1,27 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+*.tsbuildinfo
+
+# Test output
+coverage
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local environment
+*.local
+.env
+.env.*
+
+# Editors & OS
+.DS_Store
+.idea
+.vscode/*
+!.vscode/extensions.json
+
+# Claude Code local state
+.claude/

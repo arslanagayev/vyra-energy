@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VYRA Energy · Charge the night</title>
+    <meta
+      name="description"
+      content="A scroll-driven 3D product site for VYRA, a concept zero-sugar energy drink. Built with Three.js, GSAP ScrollTrigger and TypeScript."
+    />
+    <meta name="theme-color" content="#0e0612" />
+    <meta property="og:title" content="VYRA Energy · Charge the night" />
+    <meta
+      property="og:description"
+      content="Concept 3D product website: five cans, scroll-driven, built with Three.js."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="backdrop" aria-hidden="true">
+      <div class="backdrop__glow"></div>
+      <p class="backdrop__word">Original</p>
+    </div>
+    <canvas class="stage" aria-hidden="true"></canvas>
+
+    <header class="topbar">
+      <a class="logo" href="#hero" aria-label="VYRA, back to top">VYRA</a>
+      <nav class="topbar__nav" aria-label="Sections">
+        <a href="#inside">Inside</a>
+        <a href="#flavors">Flavours</a>
+        <a href="#lineup">Lineup</a>
+      </nav>
+      <a class="pill" href="#lineup">Get a can</a>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="hero" aria-labelledby="hero-title">
+        <div class="hero__copy">
+          <p class="eyebrow">New · zero sugar · 355 ml</p>
+          <h1 id="hero-title" class="display">
+            <span class="line"><span>Charge</span></span>
+            <span class="line"
+              ><span>the <em>night.</em></span></span
+            >
+          </h1>
+          <p class="lede">
+            Clean energy from green coffee beans. No sugar, no crash, five flavours.
+          </p>
+        </div>
+
+        <div class="picker" role="group" aria-label="Choose a flavour">
+          <button class="picker__arrow" type="button" data-step="-1" aria-label="Previous flavour">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+          </button>
+          <p class="picker__label" aria-live="polite">
+            <span class="picker__count">01 / 05</span>
+            <strong class="picker__name">Original Volt</strong>
+          </p>
+          <button class="picker__arrow" type="button" data-step="1" aria-label="Next flavour">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+
+        <p class="scroll-cue" aria-hidden="true"><span></span>Scroll</p>
+      </section>
+
+      <section class="inside" id="inside" aria-labelledby="inside-title">
+        <div class="sticky">
+          <h2 id="inside-title" class="section-label">What's inside</h2>
+          <ol class="features"></ol>
+          <div class="meter" aria-hidden="true"><span></span></div>
+        </div>
+      </section>
+
+      <section class="flavors" id="flavors" aria-labelledby="flavors-title">
+        <div class="sticky">
+          <h2 id="flavors-title" class="section-label">Five flavours</h2>
+          <article class="flavor-card" aria-live="polite">
+            <p class="flavor-card__count">01 / 05</p>
+            <h3 class="flavor-card__name">Original Volt</h3>
+            <p class="flavor-card__notes"></p>
+            <dl class="flavor-card__stats">
+              <div>
+                <dt>Caffeine</dt>
+                <dd data-stat="caffeine">160 mg</dd>
+              </div>
+              <div>
+                <dt>Energy</dt>
+                <dd data-stat="kcal">10 kcal</dd>
+              </div>
+              <div>
+                <dt>Sugar</dt>
+                <dd>0 g</dd>
+              </div>
+            </dl>
+          </article>
+          <div class="swatches" role="group" aria-label="Jump to a flavour"></div>
+        </div>
+      </section>
+
+      <section class="lineup" id="lineup" aria-labelledby="lineup-title">
+        <div class="sticky">
+          <h2 id="lineup-title" class="display display--md">
+            <span class="line"><span>Five ways to</span></span>
+            <span class="line"
+              ><span>run on <em>VYRA.</em></span></span
+            >
+          </h2>
+          <a class="pill pill--big" href="https://github.com/arslanagayev/vyra-energy"
+            >See how it's built</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>VYRA is a concept brand made for a design portfolio. It is not a real product.</p>
+      <p>
+        Design &amp; code by Arslan Agayev ·
+        <a href="https://github.com/arslanagayev">GitHub</a> ·
+        <a href="https://www.instagram.com/arslanagayev.dev/">Instagram</a>
+      </p>
+    </footer>
+
+    <noscript
+      ><p class="noscript">
+        This site is an interactive 3D experience and needs JavaScript.
+      </p></noscript
+    >
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
