@@ -7,7 +7,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { BRAND, type Flavor } from '../data/flavors';
 import { cameraFrame } from '../lib/camera';
 import { computeLayout, ringOpacity, type SceneState } from '../lib/layout';
-import { clamp, damp, lerp } from '../lib/math';
+import { clamp, damp } from '../lib/math';
 import { CanFactory, type CanModel } from './can';
 import { createRing, createShadow, radialTexture, shadowTexture, type Ring } from './effects';
 import { createLabelTexture } from './labelTexture';
@@ -123,16 +123,20 @@ export class Stage {
       const can = this.cans[i];
       const shadow = this.shadows[i];
       if (!can || !shadow) return;
+      // A can wrapping round the back of the carousel slides out past the edge of the frame and
+      // back, at full size, so it never shrinks or drops in front of its neighbours.
       const hidden = 1 - pose.visibility;
+      const x = pose.x * (1 + hidden * 0.8);
+      const z = pose.z - hidden * 3;
       const group = can.group;
       group.visible = pose.visibility > 0.02;
-      group.position.set(pose.x, pose.y - hidden * 1.2, pose.z - hidden * 2);
+      group.position.set(x, pose.y, z);
       group.rotation.set(0, pose.rotY, pose.rotZ);
-      group.scale.setScalar(pose.scale * lerp(0.6, 1, pose.visibility));
+      group.scale.setScalar(pose.scale);
 
       // Contact shadow on the floor: fades and grows as the can lifts off.
       const height = Math.max(0, pose.y);
-      shadow.position.set(pose.x, 0.001, pose.z);
+      shadow.position.set(x, 0.001, z);
       shadow.scale.setScalar(pose.scale * (1 + height * 0.5));
       shadow.material.opacity =
         0.9 * pose.visibility * clamp(1 - height * 0.9) * clamp(state.intro * 2);
