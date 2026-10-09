@@ -5,10 +5,8 @@
  */
 import * as THREE from 'three';
 import type { Flavor } from '../data/flavors';
+import { DISPLAY_FONT, TEXT_FONT } from '../data/fonts';
 import { labelAspect } from '../lib/canProfile';
-
-export const DISPLAY_FONT = '"Unbounded Variable", "Arial Black", sans-serif';
-export const TEXT_FONT = '"Inter Tight Variable", "Helvetica Neue", Arial, sans-serif';
 
 const WIDTH = 2048;
 const HEIGHT = Math.round(WIDTH / labelAspect());

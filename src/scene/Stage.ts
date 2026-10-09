@@ -148,7 +148,7 @@ export class Stage {
     // Camera framing with a damped pointer parallax.
     this.pointer.smoothX = damp(this.pointer.smoothX, this.pointer.x, 3, dt);
     this.pointer.smoothY = damp(this.pointer.smoothY, this.pointer.y, 3, dt);
-    const frame = cameraFrame(this.aspect, state.focus);
+    const frame = cameraFrame(this.aspect, state.focus, state.lineup);
     if (this.camera.fov !== frame.fov) {
       this.camera.fov = frame.fov;
       this.camera.updateProjectionMatrix();
@@ -169,14 +169,5 @@ export class Stage {
     this.factory.dispose();
     for (const d of this.disposables) d.dispose();
     this.renderer.dispose();
-  }
-}
-
-/** True when the browser can create a WebGL2 context. */
-export function supportsWebGL(): boolean {
-  try {
-    return Boolean(document.createElement('canvas').getContext('webgl2'));
-  } catch {
-    return false;
   }
 }
