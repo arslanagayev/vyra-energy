@@ -1,0 +1,81 @@
+name: Deploy
+
+# GitHub Pages on a free plan needs a public repository, so the jobs are skipped while the
+# repository is private. After making it public, set Settings -> Pages -> Source to
+# "GitHub Actions" and run this workflow once by hand.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Least privilege: nothing by default, each job asks only for what it needs.
+permissions:
+  contents: read
+
+# Never cancel a deployment half-way; queue the next one instead.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Verify & build site
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Runs npm lifecycle scripts, so it never holds deployment or OIDC credentials.
+    permissions:
+      contents: read
+      pages: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v6
+
+      - name: Install dependencies
+        run: npm ci
+
+      # A commit that breaks lint or tests never reaches the live demo.
+      - name: Lint & test
+        run: |
+          npm run lint
+          npm test
+
+      - name: Build
+        run: npm run build
+        env:
+          # "/vyra-energy" for a project site, "" for a user site or custom domain.
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Only this job can publish: Pages deployments authenticate with an OIDC token.
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5
