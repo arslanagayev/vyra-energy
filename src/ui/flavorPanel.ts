@@ -43,6 +43,7 @@ export function initFlavorPanel(options: Options): FlavorPanel {
   word.replaceChildren(wordText);
   const writeWord = styleWriter(word);
   let shown = -1;
+  let swap: gsap.core.Timeline | null = null;
 
   const fill = (flavor: Flavor, index: number): void => {
     fields.count.textContent = counter(index, flavors.length);
@@ -51,7 +52,6 @@ export function initFlavorPanel(options: Options): FlavorPanel {
     fields.caffeine.textContent = `${flavor.caffeineMg} mg`;
     fields.kcal.textContent = `${flavor.kcal} kcal`;
     wordText.textContent = headline(flavor);
-    card.style.setProperty('--flavor-can', flavor.can);
   };
 
   const show = (index: number): void => {
@@ -67,8 +67,9 @@ export function initFlavorPanel(options: Options): FlavorPanel {
       fill(flavor, index);
       return;
     }
-    gsap.killTweensOf([...parts, wordText]);
-    gsap
+    // A fast scroll can pass several flavours mid-swap: drop the old swap, fill included.
+    swap?.kill();
+    swap = gsap
       .timeline()
       .to(parts, { opacity: 0, y: -10, duration: 0.14, ease: 'power2.in' })
       .to(wordText, { opacity: 0, duration: 0.14 }, 0)
