@@ -30,7 +30,7 @@ This file is the brief. Keep it updated as work lands; delete the "Status" items
 Vite 8 + TypeScript 6 (strict) · three.js 0.186 · GSAP 3.15 (ScrollTrigger, free) · Lenis (smooth scroll).
 Already installed (`package.json`). `npm run dev | build | lint | typecheck | test | test:coverage`.
 
-## What already exists (written and reviewed, not yet run in a browser)
+## What already existed before the build (written and reviewed, not yet run in a browser)
 
 | File                        | What it is                                                                                                                                                                                                                                                                                                                                                                                                        |
 | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -124,11 +124,15 @@ flavour's ink/accent has contrast ≥ 3 against its can colour).
 ## Status
 
 - [x] Tooling, data, pure choreography, 3D can, label, stage, page markup
-- [ ] main.ts + UI wiring
-- [ ] Styles
-- [ ] Tests
-- [ ] Browser check + polish
-- [ ] README + deploy workflow
+- [x] main.ts + UI wiring (`src/ui/*`, scroll targets in `src/lib/scroll.ts`, easing in `src/lib/state.ts`)
+- [x] Styles (`src/styles/{tokens,base,sections}.css`)
+- [x] Tests (163 tests; `src/lib` + `src/data` at 100 % coverage, palette rule and markup checks)
+- [x] Browser check + polish at 1440×900 and 390×844 (pose-aware camera, phone layout, exit fades,
+      reduced-motion and no-WebGL paths verified)
+- [x] README + deploy workflow (Pages jobs are skipped while the repository is private)
+
+Left for the owner: review the PR, make the repository public, enable Pages (Source: GitHub
+Actions) and run the Deploy workflow once.
 
 ## Working rules for the cloud session
 

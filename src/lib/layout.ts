@@ -55,8 +55,8 @@ export const LAYOUT = {
   hideFrom: 2.05,
   /** ...and are fully hidden here, so wrapping around the ring is never visible. */
   hideTo: 2.45,
-  focusScale: 1.3,
-  focusZ: 1.4,
+  focusScale: 1.5,
+  focusZ: 2.0,
   spinTurns: 1.25,
   lineupSpacing: 1.0,
 } as const;

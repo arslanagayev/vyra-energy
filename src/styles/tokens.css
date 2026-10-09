@@ -1,0 +1,40 @@
+/*
+ * Design tokens. One two-colour combo only: Charcoal Violet #3C1A47 + Cyber Line #B6FF00,
+ * their tints and shades, and two near-neutrals for the page and the text.
+ */
+:root {
+  color-scheme: dark;
+
+  /* Palette */
+  --night: #0e0612;
+  --night-raised: #170a1d;
+  --violet: #3c1a47;
+  --violet-light: #5a2a6b;
+  --lime: #b6ff00;
+  --lime-soft: #d4ff5c;
+  --paper: #f3eefa;
+  --muted: rgb(243 238 250 / 0.62);
+  --faint: rgb(243 238 250 / 0.16);
+  --hairline: rgb(243 238 250 / 0.12);
+  --glass: rgb(23 10 29 / 0.55);
+
+  /* Set every frame from the flavour in the middle of the carousel. */
+  --glow: #5a2a6b;
+
+  /* Type */
+  --font-display: 'Unbounded Variable', 'Arial Black', sans-serif;
+  --font-text: 'Inter Tight Variable', 'Helvetica Neue', arial, sans-serif;
+  --text-sm: clamp(0.8rem, 0.76rem + 0.15vw, 0.875rem);
+  --text-md: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --title-sm: clamp(1.375rem, 1.1rem + 1.1vw, 2.125rem);
+  --title-md: clamp(1.75rem, 0.9rem + 1.8vw, 2.75rem);
+  --display-lg: clamp(56px, 9.5vw, 168px);
+  --display-md: clamp(40px, 6.4vw, 112px);
+
+  /* Space & shape */
+  --gutter: clamp(20px, 4vw, 64px);
+  --topbar: 76px;
+  --radius: 22px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
