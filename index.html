@@ -16,6 +16,10 @@
     />
     <meta property="og:type" content="website" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- Lets CSS hide text that JS is about to reveal, before the first paint. -->
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -37,7 +41,7 @@
     </header>
 
     <main id="main">
-      <section class="hero" id="hero" aria-labelledby="hero-title">
+      <section class="hero" id="hero" tabindex="-1" aria-labelledby="hero-title">
         <div class="hero__copy">
           <p class="eyebrow">New · zero sugar · 355 ml</p>
           <h1 id="hero-title" class="display">
@@ -67,7 +71,7 @@
         <p class="scroll-cue" aria-hidden="true"><span></span>Scroll</p>
       </section>
 
-      <section class="inside" id="inside" aria-labelledby="inside-title">
+      <section class="inside" id="inside" tabindex="-1" aria-labelledby="inside-title">
         <div class="sticky">
           <h2 id="inside-title" class="section-label">What's inside</h2>
           <ol class="features"></ol>
@@ -75,7 +79,7 @@
         </div>
       </section>
 
-      <section class="flavors" id="flavors" aria-labelledby="flavors-title">
+      <section class="flavors" id="flavors" tabindex="-1" aria-labelledby="flavors-title">
         <div class="sticky">
           <h2 id="flavors-title" class="section-label">Five flavours</h2>
           <article class="flavor-card" aria-live="polite">
@@ -101,7 +105,7 @@
         </div>
       </section>
 
-      <section class="lineup" id="lineup" aria-labelledby="lineup-title">
+      <section class="lineup" id="lineup" tabindex="-1" aria-labelledby="lineup-title">
         <div class="sticky">
           <h2 id="lineup-title" class="display display--md">
             <span class="line"><span>Five ways to</span></span>
