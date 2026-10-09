@@ -29,7 +29,7 @@ export function cameraFrame(aspect: number, focus: number, lineup = 0): CameraFr
   return {
     z: 8.4 * lerp(1, phoneFit, narrow),
     y: lerp(1.0, 1.25, narrow),
-    lookY: lerp(lerp(lerp(0.36, 0.3, narrow), 0.98, f), 0.66, l),
+    lookY: lerp(lerp(lerp(0.36, 0.3, narrow), 0.98, f), 0.76, l),
     fov: lerp(30, 40, narrow),
   };
 }
